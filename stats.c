@@ -27,31 +27,103 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-unsigned char find_minimum(unsigned char* array, int array_length){};
 
-unsigned char find_maximum(unsigned char* array, int array_length){};
+unsigned char find_minimum(unsigned char* array, int array_length){
+	unsigned char minimum_nummer_found = -1;
+	for(int i = 0; i < array_length; i++){
+		if(array[i] <= minimum_nummer_found){
+			minimum_nummer_found = array[i];
+		}
+	}
+	return minimum_nummer_found;
+};
 
-float find_mean(unsigned char* array, int array_length){};
+unsigned char find_maximum(unsigned char* array, int array_length){
+	unsigned char maximum_nummer_found = 0;
+	for(int i = 0; i < array_length; i++){
+		if(array[i] >= maximum_nummer_found){
+			maximum_nummer_found = array[i];
+		}
+	}
+	return maximum_nummer_found;
+};
+
+float find_mean(unsigned char* array, int array_length){
+	unsigned int sum = 0;
+	for(int i = 0; i < array_length; i++){
+		sum += array[i];
+	}
+	return (float)sum/array_length;
+};
  
-void print_array(unsigned char* array, int array_length){};
 
-void sort_array(unsigned char* array, int array_length){}; 
 
-float find_median(unsigned char* array, int array_length){};
+void print_array(unsigned char* array, int array_length){
+	printf("{");
+	for(int i = 0; i < array_length; i++){
+		printf(" %u,", array[i]);
+	}
+	printf("}\n");
+	return;
+};
 
-void print_statistics(unsigned char* array, int array_length){};
+void sort_array(unsigned char* array, int array_length){
+	int idx = 0;
+	unsigned char temp;
+	for (int i = 0; i < array_length; ++i)
+	{
+		unsigned char maximum_nummer_found = 0;
+		for(int j = 0 + i; j < array_length; j++){
+			if(array[j] >= maximum_nummer_found){
+				maximum_nummer_found = array[j];
+				idx = j;
+			}
+		}
+		temp = array[i];
+		array[i] = array[idx];
+		array[idx] = temp;		
+	}
+	return;
+};
+
+float find_median(unsigned char* array, int array_length){
+	sort_array(array,array_length);
+	if(array_length %2 == 0){
+		return (float)array[array_length/2];
+	}else{
+		return (float)((array[array_length/2]+array[(array_length/2) + 1])/2.0);
+	}
+};
+
+void print_statistics(unsigned char* array, int array_length){
+	unsigned char minimum = find_minimum(array,array_length);
+	unsigned char maximum =  find_maximum(array,array_length);
+	float mean = find_mean(array,array_length);
+	float median = find_median(array,array_length);
+	printf("---statistics---\nminimum: %u\nmaximum: %u\nmean: %0.2f\nmedian:%0.2f\n\n", minimum,maximum, mean, median);
+};
 
 void main() {
 
-  unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
-                              114, 88,   45,  76, 123,  87,  25,  23,
-                              200, 122, 150, 90,   92,  87, 177, 244,
-                              201,   6,  12,  60,   8,   2,   5,  67,
-                                7,  87, 250, 230,  99,   3, 100,  90};
+	  unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
+	                              114, 88,   45,  76, 123,  87,  25,  23,
+	                              200, 122, 150, 90,   92,  87, 177, 244,
+	                              201,   6,  12,  60,   8,   2,   5,  67,
+	                                7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
-
+  print_array(test, SIZE);
+  unsigned char minimum = find_minimum(test, SIZE);
+  printf("minimum: %u\n", minimum);
+  unsigned char maximum = find_maximum(test, SIZE);
+  printf("maximum: %u\n", maximum);
+  float mean = find_mean(test, SIZE);
+  printf("mean: %.2f\n", mean);
+  float median = find_median(test, SIZE);
+  printf("median: %.2f\n", median);
+  print_statistics(test,SIZE);
 }
 
 /* Add other Implementation File Code Here */
+
