@@ -23,18 +23,73 @@
 
 /* Add Your Declarations and Function Comments here */ 
 
-/**
- * @brief <Add Brief Description of Function Here>
- *
- * <Add Extended Description Here>
- *
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- *
- * @return <Add Return Informaiton here>
- */
 
+/**
+ * @brief find minimum values of an array
+ *
+ * @param array array.
+ * @param array_length size of array.
+ *
+ * @return minimum values in unsigned char.
+ */
+unsigned char find_minimum(unsigned char* array, int array_length);
+
+
+/**
+ * @brief find maximum values of an array
+ *
+ * @param array array.
+ * @param array_length size of array.
+ *
+ * @return maximum values in unsigned char.
+ */
+unsigned char find_maximum(unsigned char* array, int array_length);
+
+/**
+ * @brief find average of values of an array
+ *
+ * @param array array.
+ * @param array_length size of array.
+ *
+ * @return mean of array (float).
+ */
+float find_mean(unsigned char* array, int array_length);
+
+
+/**
+ * @brief find median values of an array
+ *
+ * @param array array.
+ * @param array_length size of array.
+ *
+ * @return median of array (float).
+ */
+float find_median(unsigned char* array, int array_length);
+
+
+/**
+ * @brief sort an array from highest to smallest values
+ *
+ * @param array array.
+ * @param array_length size of array.
+ */
+void sort_array(unsigned char* array, int array_length);
+
+/**
+ * @brief print summary of statistics (min, max, mean and median)
+ *
+ * @param array array.
+ * @param array_length size of array.
+ */
+void print_statistics(unsigned char* array, int array_length);
+
+/**
+ * @brief print an array
+ *
+ * @param array array.
+ * @param array_length size of array.
+ */
+void print_array(unsigned char* array, int array_length);
 
 #endif /* __STATS_H__ */
+
